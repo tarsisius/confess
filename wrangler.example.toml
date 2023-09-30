@@ -9,3 +9,4 @@ bucket = "./assets"
 HOST = "http://localhost:8787"
 DB_URL = libsql://xx
 DB_AUTH_TOKEN = xx
+DB_CONNECTION_TYPE = "remote"
