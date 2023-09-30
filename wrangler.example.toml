@@ -1,0 +1,11 @@
+name = "web"
+main = "./src/worker.ts"
+compatibility_date = "2023-01-01"
+
+[site]
+bucket = "./assets" 
+
+[vars]
+HOST = "http://localhost:8787"
+DB_URL = libsql://xx
+DB_AUTH_TOKEN = xx
