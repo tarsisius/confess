@@ -39,7 +39,7 @@ export const Base = ({ children }: PropsWithChildren) => (
             target='_blank'
             href='https://github.com/tarsisius'
             rel='noopener noreferrer'>
-            @tarsisius
+            @thp
           </a>
         </footer>
       </body>
