@@ -20,9 +20,7 @@ const viewConfess = async (req: IRequest, env: Env) => {
     <Base>
       <div class='mx-auto w-full max-w-md'>
         <div hx-ext='response-targets'>
-          <div
-            id='successMessage'
-            class='text-sm text-green-600'>cek alpine</div>
+          <div id='successMessage' class='text-sm text-green-600'></div>
           <div id='errorMessage' class='text-sm text-red-600'></div>
           <form
             _='on htmx:beforeRequest remove .hidden from #loader add .hidden to #send on htmx:beforeOnLoad add .hidden to #loader remove .hidden from #send on htmx:responseError remove .hidden from #errorMessage'
