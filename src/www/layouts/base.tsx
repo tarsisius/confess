@@ -12,13 +12,9 @@ export const Base = ({ children }: PropsWithChildren) => (
         <link rel='stylesheet' href='/public/tc.min.css' />
         <link rel='stylesheet' href='/public/hc.css' />
         <link rel='stylesheet' href='/public/generated.min.css' />
+        <script src='/public/index.js'></script>
         <script src='https://unpkg.com/htmx.org@1.9.6'></script>
         <script src='https://unpkg.com/htmx.org/dist/ext/response-targets.js'></script>
-        <script src='https://unpkg.com/hyperscript.org@0.9.11'></script>
-        {/* will try alpine js later */}
-        {/* <script
-          defer
-          src='https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js'></script> */}
       </head>
       <body class='font-sans flex flex-col min-h-screen text-gray-700'>
         <div class='mx-auto flex justify-center my-8'>

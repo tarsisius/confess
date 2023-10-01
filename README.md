@@ -18,7 +18,7 @@
 - Cloudflare worker (wrangler, itty-router)
 - Turso database (sqlite)
 - Drizzle orm
-- HTMX, Hyperscript (interactivity)
+- HTMX
 - Uno css
 - @kitajs/html for jsx templating
 
@@ -30,8 +30,8 @@ You can start the server using these steps command:
 - get turso db url & token, put it on [vars] wrangler.toml also on .env file
 - generate database migrations `pnpm db:generate`, it will create `migrations` folder
 - push database migrations `pnpm db:push`
-- run `pnpm dev:worker` to start worker development server
-- run `pnpm dev:uno` to start unocss development server (generate css file from uno)
+- run `pnpm pre` to pre-compile uno css and dom js
+- run `pnpm dev` to start worker development server
 
 
 ### Deployment

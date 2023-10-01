@@ -1,5 +1,5 @@
-import formatTime from '@/lib/utils/time'
 import html from '@kitajs/html'
+import formatTime from '@/lib/utils/time'
 
 const Message = ({ data }: { data: MessageData }) => (
   <div class='flex flex-col space-y-4 w-full py-2 '>

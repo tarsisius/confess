@@ -3,13 +3,15 @@
   "scripts": {
     "db:generate": "drizzle-kit generate:sqlite",
     "db:push": "pnpm drizzle-kit push:sqlite",
-    "dev:uno": "unocss --watch --minify",
-    "dev:worker": "pnpm wrangler dev",
+    "pre:uno": "unocss --minify",
+    "pre:generate-dom": "tsc --project ./src/www/dom/tsconfig.dom.json",
+    "pre": "pnpm run /^pre:.*/",
+    "dev": "pnpm wrangler dev",
     "deploy": "pnpm wrangler deploy"
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.3.0",
-    "@kitajs/html": "^2.2.2",
+    "@kitajs/html": "^3.0.0",
     "@libsql/client": "^0.3.4",
     "dayjs": "^1.11.10",
     "drizzle-orm": "^0.28.6",
