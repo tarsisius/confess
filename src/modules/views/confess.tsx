@@ -1,11 +1,9 @@
 import html from '@kitajs/html'
-import { error, type IRequest } from 'itty-router'
-import { html as render } from 'itty-router/html'
 import { eq } from 'drizzle-orm'
 import { users } from '@/database/schema'
 import Base from '@/www/layouts/base'
 
-const viewConfess = async (req: IRequest, env: Env) => {
+const viewConfess = async ({ env, req }: { env: Env; req: IRequest }) => {
   const getUsers = await env
     .__db_client!.select()
     .from(users)
@@ -13,10 +11,10 @@ const viewConfess = async (req: IRequest, env: Env) => {
     .limit(1)
 
   if (getUsers.length == 0) {
-    return error(404, 'Not Found')
+    return Response.json({ error: 'Not found!' }, { status: 404 })
   }
 
-  return render(
+  const jsx = await (
     <Base>
       <div class='mx-auto w-full max-w-md'>
         <div hx-ext='response-targets'>
@@ -66,6 +64,12 @@ const viewConfess = async (req: IRequest, env: Env) => {
       </div>
     </Base>
   )
+
+  return new Response(jsx, {
+    headers: {
+      'content-type': 'text/html;charset=UTF-8',
+    },
+  })
 }
 
 export default viewConfess

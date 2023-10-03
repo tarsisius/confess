@@ -14,6 +14,9 @@ dependencies:
   '@libsql/client':
     specifier: ^0.3.4
     version: 0.3.4
+  '@tsndr/cloudflare-worker-router':
+    specifier: ^3.1.0
+    version: 3.1.0
   dayjs:
     specifier: ^1.11.10
     version: 1.11.10
@@ -731,6 +734,10 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: true
+
+  /@tsndr/cloudflare-worker-router@3.1.0:
+    resolution: {integrity: sha512-VmV0k9seiS2DQ8Op2rbKY6Qr+ixv9jC9UESKn4ymkJGGdAWtNkZU9Vj21CKnd6Mk0ebKXauhrzR9LN0S1tJyDg==}
+    dev: false
 
   /@types/cookie@0.5.2:
     resolution: {integrity: sha512-DBpRoJGKJZn7RY92dPrgoMew8xCWc2P71beqsjyhEI/Ds9mOyVmBwtekyfhpwFIVt1WrxTonFifiOZ62V8CnNA==}

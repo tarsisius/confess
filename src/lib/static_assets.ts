@@ -1,34 +1,56 @@
-import { getAssetFromKV } from '@cloudflare/kv-asset-handler'
+import {
+  MethodNotAllowedError,
+  NotFoundError,
+  getAssetFromKV,
+} from '@cloudflare/kv-asset-handler'
+
 // @ts-ignore
 import manifestJSON from '__STATIC_CONTENT_MANIFEST'
 
-const importAssets = async (req: Request, env: Env, ctx: ExecutionContext) => {
-  return await getAssetFromKV(
-    {
-      request: req,
-      waitUntil: function (promise) {
-        ctx.waitUntil(promise)
-      },
-    },
-    {
-      ASSET_NAMESPACE: env.__STATIC_CONTENT,
-      ASSET_MANIFEST: JSON.parse(manifestJSON),
-    }
-  )
-}
-
-const assetsHandler = async (req: Request, env: Env, ctx: ExecutionContext) => {
-  const url = new URL(req.url)
-
-  const assetUrl = `https://${url.hostname}${url.pathname}`
-  const response = await importAssets(new Request(assetUrl), env, ctx)
-  if (response && response.status >= 200 && response.status < 400) {
-    return response
+const assetHandler = async ({
+  env,
+  req,
+  ctx,
+}: {
+  env: Env
+  req: Request
+  ctx: ExecutionContext
+}) => {
+  const createErrorResponse = (status: number, message: string): Response => {
+    return new Response(message, { status })
   }
 
-  return new Response('Not found', {
-    status: 404,
-  })
+  const fetchAndHandleAsset = async (assetUrl: string): Promise<Response> => {
+    try {
+      const response = await getAssetFromKV(
+        {
+          request: new Request(assetUrl),
+          waitUntil: ctx.waitUntil.bind(ctx),
+        },
+        {
+          ASSET_NAMESPACE: env.__STATIC_CONTENT,
+          ASSET_MANIFEST: JSON.parse(manifestJSON),
+        }
+      )
+
+      return response
+    } catch (e) {
+      if (e instanceof NotFoundError) {
+        return createErrorResponse(404, 'Not found')
+      } else if (e instanceof MethodNotAllowedError) {
+        return createErrorResponse(405, 'Method not allowed')
+      } else {
+        return createErrorResponse(500, 'An unexpected error occurred')
+      }
+    }
+  }
+
+  const url = new URL(req.url)
+  const assetUrl = `https://${url.hostname}${url.pathname}`
+
+  if (req.url.includes('/favicon.ico') || req.url.includes('/public/')) {
+    return await fetchAndHandleAsset(assetUrl)
+  }
 }
 
-export { assetsHandler }
+export default assetHandler

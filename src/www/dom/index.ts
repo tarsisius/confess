@@ -14,6 +14,23 @@ if (typeof window !== 'undefined') {
     document.body.addEventListener('htmx:beforeOnLoad', () =>
       toggleElements(true)
     )
+
+    const coppyButton = document.getElementById(
+      'copy_url_button'
+    ) as HTMLButtonElement
+    const urlInput = document.getElementById('url_input') as HTMLInputElement
+
+    coppyButton?.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(urlInput.value)
+
+      const copyIcon = document.getElementById('copy_url_icon') as HTMLElement
+      const copiedIcon = document.getElementById(
+        'copied_url_icon'
+      ) as HTMLElement
+
+      copyIcon.classList.add('hidden')
+      copiedIcon.classList.remove('hidden')
+    })
   })
 }
 

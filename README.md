@@ -15,7 +15,7 @@
 - Run on cloudflare worker, no need to pay for hosting (free plan)
 
 **Tech Stack**
-- Cloudflare worker (wrangler, itty-router)
+- Cloudflare worker (wrangler, "@tsndr/cloudflare-worker-router)
 - Turso database (sqlite)
 - Drizzle orm
 - HTMX

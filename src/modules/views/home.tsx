@@ -1,12 +1,11 @@
 import html from '@kitajs/html'
-import { html as render } from 'itty-router/html'
-import { parse } from 'cookie'
 import { eq } from 'drizzle-orm'
+import { parse } from 'cookie'
 import { users } from '@/database/schema'
 import { verifyJwtToken } from '@/lib/utils/jwt'
 import Base from '@/www/layouts/base'
 
-const viewHome = async (req: Request, env: Env) => {
+const viewHome = async ({ env, req }: { env: Env; req: Request }) => {
   const cookie = parse(req.headers.get('Cookie') || '')
 
   const token = cookie['__token']
@@ -24,7 +23,7 @@ const viewHome = async (req: Request, env: Env) => {
     }
   }
 
-  return render(
+  const jsx = (
     <Base>
       <div class='mx-auto w-full max-w-md'>
         <div hx-ext='response-targets'>
@@ -57,10 +56,7 @@ const viewHome = async (req: Request, env: Env) => {
               class='flex h-10 w-full items-center justify-center space-x-2 rounded-md border px-4 transition-all focus:outline-none border-black bg-black text-white font-semibold text-sm hover:bg-white hover:text-black'>
               <p>Create a link</p>
               <div id='send' class='i-lucide:send' />
-              <div
-                id='loader'
-                class='hidden animate-spin i-lucide:loader-2'
-              />
+              <div id='loader' class='hidden animate-spin i-lucide:loader-2' />
             </button>
             <p class='text-center text-sm'>
               We will create a link that you can share to people.
@@ -70,6 +66,12 @@ const viewHome = async (req: Request, env: Env) => {
       </div>
     </Base>
   )
+
+  return new Response(await jsx, {
+    headers: {
+      'content-type': 'text/html;charset=UTF-8',
+    },
+  })
 }
 
 export default viewHome
