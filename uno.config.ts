@@ -10,7 +10,7 @@ export default defineConfig({
   cli: {
     entry: {
       patterns: ['src/**/*.{ts,tsx}'],
-      outFile: 'assets/public/generated.min.css',
+      outFile: 'assets/public/css/generated.min.css',
     },
   },
   presets: [

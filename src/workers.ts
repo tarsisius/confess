@@ -18,13 +18,6 @@ export default {
 
       r.use(assetsHandler)
 
-      // const s = ['/favicon.ico', '/public/:name']
-      // for (const path of s) {
-      //   r.get(path, assetsHandler)
-      // }
-
-      r.get('/', viewHome)
-
       r.post('/api/register-user', registerUser)
       r.post('/api/send-message', sendMessage)
 

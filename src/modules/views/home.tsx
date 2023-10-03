@@ -23,7 +23,7 @@ const viewHome = async ({ env, req }: { env: Env; req: Request }) => {
     }
   }
 
-  const jsx = (
+  const jsx = await (
     <Base>
       <div class='mx-auto w-full max-w-md'>
         <div hx-ext='response-targets'>
@@ -64,10 +64,11 @@ const viewHome = async ({ env, req }: { env: Env; req: Request }) => {
           </form>
         </div>
       </div>
+      <script src='/public/js/form_loading.js'></script>
     </Base>
   )
 
-  return new Response(await jsx, {
+  return new Response(jsx, {
     headers: {
       'content-type': 'text/html;charset=UTF-8',
     },

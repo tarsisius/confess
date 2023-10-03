@@ -9,10 +9,9 @@ export const Base = ({ children }: PropsWithChildren) => (
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
         <title>confess</title>
         <link rel='icon' href='/favicon.ico' />
-        <link rel='stylesheet' href='/public/tc.min.css' />
-        <link rel='stylesheet' href='/public/hc.css' />
-        <link rel='stylesheet' href='/public/generated.min.css' />
-        <script src='/public/index.js'></script>
+        <link rel='stylesheet' href='/public/css/tc.min.css' />
+        <link rel='stylesheet' href='/public/css/hc.css' />
+        <link rel='stylesheet' href='/public/css/generated.min.css' />
         <script src='https://unpkg.com/htmx.org@1.9.6'></script>
         <script src='https://unpkg.com/htmx.org/dist/ext/response-targets.js'></script>
       </head>
