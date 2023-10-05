@@ -11,20 +11,18 @@ declare global {
     DB_AUTH_TOKEN: string
     HOST: string
   }
+
   interface IRequest extends Request {
     params: Record<string, string>
   }
-  namespace JSX {
-    interface HtmlTag extends Htmx.Attributes {
-      _?: string
-    }
-  }
+
   interface UserData {
     id: number
     name: string
     url: string
     createdAt: string
   }
+  
   interface MessageData {
     id: number
     text: string

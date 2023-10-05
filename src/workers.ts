@@ -1,3 +1,4 @@
+
 import { Router } from '@tsndr/cloudflare-worker-router'
 import initDbClient from '@/database/client'
 import assetsHandler from '@/lib/static_assets'
@@ -23,11 +24,15 @@ export default {
 
       r.get('/', viewHome)
       r.get('/dash', viewDashboard)
-
       r.get('/to/:url', viewConfess)
 
       r.any('*', () => {
-        return Response.json({ error: 'Not found!' }, { status: 404 })
+        return new Response('404 boy', {
+          headers: {
+            'content-type': 'text/html;charset=UTF-8',
+          },
+          status: 404,
+        })
       })
 
       env.__router = r

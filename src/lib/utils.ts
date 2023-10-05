@@ -1,4 +1,17 @@
 import { SignJWT, jwtVerify } from 'jose'
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+export function html(strings: TemplateStringsArray, ...values: any[]): string {
+  return String.raw({ raw: strings }, ...values)
+}
+
+export function formatTime(time: string | Date) {
+  dayjs.extend(utc)
+  dayjs.extend(relativeTime)
+  return dayjs.utc(time).utcOffset(7, true).fromNow()
+}
 
 const secret = 'aowkfamwdimf'
 

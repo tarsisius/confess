@@ -7,11 +7,6 @@
     // add workers type definitions
     "types": ["@cloudflare/workers-types"],
 
-    // jsx
-    "jsx": "react",
-    "jsxFactory": "html.createElement",
-    "jsxFragmentFactory": "html.Fragment",
-
     // enable latest features
     "lib": ["esnext", "dom"],
     "module": "esnext",

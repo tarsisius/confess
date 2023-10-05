@@ -1,11 +1,10 @@
-import html from '@kitajs/html'
 import { parse } from 'cookie'
 import { eq } from 'drizzle-orm'
-import { verifyJwtToken } from '@/lib/utils/jwt'
+import { html, verifyJwtToken } from '@/lib/utils'
 import { users } from '@/database/schema'
-import Base from '@/www/layouts/base'
-import Messages from '@/www/components/messages'
-import CopyLink from '@/www/components/copy_link'
+import baseLayout from '@/www/layouts/base'
+import copyURL from '@/www/components/copy_url'
+import messages from '@/www/components/messages'
 
 const viewDash = async ({ env, req }: { env: Env; req: Request }) => {
   const cookie = parse(req.headers.get('Cookie') || '')
@@ -24,6 +23,7 @@ const viewDash = async ({ env, req }: { env: Env; req: Request }) => {
         columns: {
           userId: false,
         },
+        orderBy: (messages, { desc }) => [desc(messages.createdAt)],
       },
     },
   })
@@ -32,23 +32,21 @@ const viewDash = async ({ env, req }: { env: Env; req: Request }) => {
     return Response.redirect(env.HOST, 301)
   }
 
-  const jsx = await (
-    <Base>
-      <div class='mx-auto w-full max-w-md'>
-        <div class='flex flex-col space-y-4 py-4'>
-          <label class='font-semibold' for='name_input'>
-            Your Name:{' '}
-            <span class='underline underline-gray-600'>{data.name}</span>
-          </label>
-          <p class='text-sm text-gray-600'>This is your profile link:</p>
-          <CopyLink url={`${env.HOST}/to/${userData.url}`} />
-          <Messages data={userData.messages} />
-        </div>
+  const p = html`
+    <div class="${"mx-auto w-full max-w-md"}">
+      <div class="flex flex-col space-y-4 py-4">
+        <label class="font-semibold" for="name_input">
+          Your Name:
+          <span class="underline underline-gray-600">${data.name}</span>
+        </label>
+        <p class="text-sm text-gray-600">This is your profile link:</p>
+        ${copyURL(`${env.HOST}/to/${data.url}`)}
+        ${messages(userData.messages)}
       </div>
-    </Base>
-  )
-
-  return new Response(jsx, {
+    </div>
+  `
+  
+  return new Response(baseLayout(p), {
     headers: {
       'content-type': 'text/html;charset=UTF-8',
     },

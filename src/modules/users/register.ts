@@ -1,6 +1,6 @@
 import { customAlphabet } from 'nanoid'
 import { users } from '@/database/schema'
-import { getJwtToken } from '@/lib/utils/jwt'
+import { getJwtToken } from '@/lib/utils'
 import { serialize } from 'cookie'
 
 const register = async ({ env, req }: { env: Env; req: Request }) => {
