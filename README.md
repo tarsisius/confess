@@ -19,7 +19,7 @@
 - Turso database (sqlite)
 - Drizzle orm
 - HTMX
-- Uno css
+- Tailwind css
 - @kitajs/html for jsx templating
 
 ### Run the development server
