@@ -20,7 +20,6 @@
 - Drizzle orm
 - HTMX
 - Tailwind css
-- @kitajs/html for jsx templating
 
 ### Run the development server
 
@@ -30,8 +29,9 @@ You can start the server using these steps command:
 - get turso db url & token, put it on [vars] wrangler.toml also on .env file
 - generate database migrations `pnpm db:generate`, it will create `migrations` folder
 - push database migrations `pnpm db:push`
-- run `pnpm pre` to pre-compile uno css and dom js
+- run `pnpm pre` to pre-compile tailwind css and dom js
 - run `pnpm dev` to start worker development server
+- to enable syntax highlighter in template literals using vscode extension called [lit-html](https://marketplace.visualstudio.com/items?itemName=bierner.lit-html)
 
 
 ### Deployment
