@@ -26,9 +26,9 @@ const viewConfess = async ({ env, req }: { env: Env; req: IRequest }) => {
           hx-target-4xx="#error_message"
           hx-trigger="submit"
           class="flex flex-col space-y-3 py-4">
-          <label class="font-semibold" for="message"> Make Conffession </label>
+          <label class="font-semibold" for="message"> Make Confession </label>
           <p class="text-sm text-gray-600">
-            Send your conffession to:
+            Send your confession to:
             <span class="font-semibold">${getUsers[0].name}</span>
           </p>
           <textarea
@@ -46,7 +46,7 @@ const viewConfess = async ({ env, req }: { env: Env; req: IRequest }) => {
             class="hidden">
           <button
             type="submit"
-            class="flex h-10 w-full items-center justify-center space-x-2 rounded-md border px-4 transition-all focus:outline-none border-black bg-black text-white font-semibold text-sm hover:bg-white hover:text-black">
+            class="flex h-10 w-full items-center justify-center space-x-2 rounded-md border px-4 transition-all duration-500 focus:outline-none border-black bg-black text-white font-semibold text-sm hover:bg-white hover:text-black">
             <p>Send your confession</p>
             <div id="send" class="icon-[lucide--send]"></div>
             <div id="loader" class="animate-spin icon-[lucide--loader-2] hidden"></div>

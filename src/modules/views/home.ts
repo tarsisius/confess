@@ -50,7 +50,7 @@ const viewHome = async ({ env, req }: { env: Env; req: Request }) => {
           <button
             type="submit"
             title="submit form"
-            class="flex h-10 w-full items-center justify-center space-x-2 rounded-md border px-4 transition-all focus:outline-none border-black bg-black text-white font-semibold text-sm hover:bg-white hover:text-black">
+            class="flex h-10 w-full items-center justify-center space-x-2 rounded-md border px-4 transition-all duration-500 focus:outline-none border-black bg-black text-white font-semibold text-sm hover:bg-white hover:text-black">
             <p>Create a link</p>
             <div id="send" class="icon-[lucide--send]" ></div>
             <div
