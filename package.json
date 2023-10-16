@@ -2,12 +2,12 @@
   "name": "confess",
   "scripts": {
     "db:generate": "drizzle-kit generate:sqlite",
-    "db:push": "pnpm drizzle-kit push:sqlite",
-    "pre:build-dom": "pnpm tsx build-dom.ts",
-    "pre:tw": "pnpm tailwindcss -i ./src/www/tailwind.css -o ./assets/public/css/generated.css --minify",
+    "db:push": "drizzle-kit push:sqlite",
+    "pre:build-dom": "tsx build-dom.ts",
+    "pre:tw": "tailwindcss -i ./src/www/tailwind.css -o ./assets/public/css/generated.css --minify",
     "pre": "pnpm run /^pre:.*/",
-    "dev": "pnpm wrangler dev",
-    "deploy": "pnpm wrangler deploy"
+    "dev": "wrangler dev",
+    "prod": "wrangler deploy --minify src/worker.ts"
   },
   "dependencies": {
     "@cloudflare/kv-asset-handler": "^0.3.0",
@@ -26,6 +26,7 @@
     "@iconify/tailwind": "^0.1.3",
     "@types/cookie": "^0.5.2",
     "@types/node": "^20.8.6",
+    "better-sqlite3": "^9.0.0",
     "cookie": "^0.5.0",
     "dotenv": "^16.3.1",
     "drizzle-kit": "^0.19.13",
